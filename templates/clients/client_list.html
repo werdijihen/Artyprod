@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <h1>Liste des clients</h1>
+  <ul>
+    {% for client in clients %}
+      <li>{{ client.user.username }}</li>
+    {% empty %}
+      <li>Aucun client disponible</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

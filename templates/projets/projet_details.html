@@ -1,0 +1,39 @@
+
+
+
+
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-header">
+                 <i class="fa fa-align-justify"></i> Project Information
+            </div>
+            <div class="card-body">
+                <tbody>
+                    <tr>
+                        <td>Name: {{ single_projet.libelle }}</td>
+                        <br>
+                        <td>description: {{ single_projet.description }}</td>
+                        <br>
+                        <td>date_debut: {{single_projet.date_debut }}</td>
+                        <br>
+                        <td>date_fin: {{ single_projet.date_fin }}</td>
+                        <br>
+                        <td>image: {{ single_projet.image }}</td>
+                        <br>
+                    </tr>
+                </tbody>
+            </div>
+        </div>
+    </div>
+   
+    
+   
+</div>
+
+{% endblock %}

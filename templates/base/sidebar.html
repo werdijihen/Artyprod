@@ -1,0 +1,124 @@
+{% load static %}
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}"><i class="icon-speedometer"></i> Dashboard</a>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon fa fa-laptop"></i> Projet</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'projet_list' %}">
+                            <i class="nav-icon icon-puzzle"></i> projet List</a>
+                    </li>
+                    {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'projet_regi' %}">
+                            <i class="nav-icon icon-puzzle"></i> Registration</a>
+                    </li>
+                    {% endif %}
+                    
+                </ul>
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-user"></i> Personnels</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'personnel_list' %}">
+                            <i class="nav-icon icon-puzzle"></i> Personnel List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_personnel' %}">
+                            <i class="nav-icon icon-puzzle"></i> Create New Personnel</a>
+                   
+                </ul>
+            </li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon fa fa-group"></i> Equipe</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'equipe_list' %}">
+                            <i class="nav-icon icon-puzzle"></i> equipe List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_equipe' %}">
+                            <i class="nav-icon icon-puzzle"></i> Create New equipe</a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-user"></i> client</a>
+                <ul class="nav-dropdown-items">
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'project_requests' %}">
+                            <i class="nav-icon icon-puzzle"></i> Les demandes de projets</a>
+                    </li>
+                </ul>
+            </li>
+            
+            {% endif %}
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon fa fa-gears"></i> services</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        
+                        <a class="nav-link" href="{% url 'service_list' %}">
+                            <i class="nav-icon icon-puzzle"></i> service List</a>
+                    </li>
+                    {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_service' %}">
+                            <i class="nav-icon icon-puzzle"></i> Create service</a>
+                    </li>
+                    {% endif %}
+                   
+                </ul>
+            </li>
+           
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon fa fa-plus"></i> Blog</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'article_list' %}">
+                            <i class="nav-icon icon-puzzle"></i> Blog</a>
+                    </li>
+                    
+                </ul>
+            </li>   
+            
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    
+                    <i class="nav-icon icon-speech"></i> Contact</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mailing' %}">
+                            <i class="nav-icon icon-puzzle"></i> Contact</a>
+                           
+                    </li>
+                    
+                    
+                </ul>
+            </li> 
+        </ul>
+        
+    </nav>
+    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+
+    {% block sidebar %}
+    {% endblock %}
+</div>
+

@@ -1,0 +1,130 @@
+{% load static %}
+
+<form action="{% url 'mailing' %}" method="post">
+  <h1>Contact Us</h1>
+  <p>Please take a moment to get in touch, we will get back to you shortly.</p>
+  {% csrf_token %}
+  <div class="column">
+    <label for="the-name">Your Name</label>
+    <input type="text" name="name" id="the-name">
+
+    <label for="the-email">Email Address</label>
+    <input type="email" name="email" id="the-email">
+
+    <div>
+      <label for="text">Subject</label>
+      <input type="text" name="subject" placeholder="Subject" required id="text" />
+    </div>
+
+  </div>
+  <div class="column">
+    <label for="the-message">Message</label>
+    <textarea name="message" id="the-message"></textarea>
+
+    <button type="submit">Envoyer</button>
+  </div>
+</form>
+<style>
+  html {
+    background: white;
+    box-sizing: border-box;
+  }
+
+  * {
+    box-sizing: inherit;
+  }
+
+  body {
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    font-family: Calibri, Arial, sans-serif;
+    padding: 20px;
+  }
+
+  h1,
+  p {
+    text-align: center;
+  }
+
+  label {
+    display: block;
+    margin: 1em 0 .2em;
+  }
+
+  /* single-line text, checkbox, and button */
+  input,
+  select,
+  textarea {
+    display: block;
+    width: 100%;
+    padding: .3em;
+    font-size: 20px;
+    background-color: #fbfbfb;
+    border: solid 1px #67a7f1;
+    resize: vertical;
+  }
+
+  textarea {
+    min-height: 180px;
+  }
+
+  select {
+    color: rgb(127, 194, 244);
+  }
+
+  option {
+    color: blue;
+    background: lavenderBlush;
+  }
+
+  input[type=checkbox] {
+    display: inline;
+    width: auto;
+    color: blue;
+  }
+
+  input[type=submit] {
+    background: rgb(142, 186, 250);
+    margin: 1em 0 0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: all .3s ease-out;
+  }
+
+  input:focus,
+  input:hover,
+  select:focus,
+  select:hover,
+  textarea:focus,
+  textarea:hover {
+    background: lavenderBlush;
+  }
+
+  /* hover and focus states */
+  input[type=submit]:hover,
+  input[type=submit]:focus {
+    background: rgb(210, 221, 237);
+    outline: none;
+  }
+
+  @media screen and (min-width:600px) {
+
+    /*  make the form 2 columns */
+    form:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .column {
+      width: 50%;
+      padding: 1em;
+      float: left;
+    }
+  }
+</style>
+
+</head>

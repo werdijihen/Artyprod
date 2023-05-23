@@ -1,0 +1,9 @@
+{% for demande in demandes_projet %}
+  <div class="demande-projet">
+    <h3>{{ demande.libelle }}</h3>
+    <p>{{ demande.description }}</p>
+    <!-- Affichez d'autres détails de la demande de projet -->
+  </div>
+{% empty %}
+  <p>Aucune demande de projet en attente.</p>
+{% endfor %}

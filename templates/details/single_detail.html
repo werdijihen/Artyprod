@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-header">
+                 <i class="fa fa-align-justify"></i> Details Info
+            </div>
+            <div class="card-body">
+                <tbody>
+                    <tr>
+                        <td>Fichier: {{ single_detail.fichier }}</td>
+                        <br>
+                        <td>Projet: {{ single_detail.projet }}</td>
+                        <br>
+                        <td>Service: {{single_detail.service }}</td>
+                       
+                       
+                    </tr>
+                </tbody>
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+
+
+{% endblock %}
+

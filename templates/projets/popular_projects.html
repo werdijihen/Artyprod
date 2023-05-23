@@ -1,0 +1,36 @@
+<!-- popular_projects.html -->
+{% extends 'base/base.html' %}
+
+<!-- popular_projects.html -->
+<!-- project_statistics.html -->
+<h1>Statistiques des projets</h1>
+
+<p>Nombre total de projets : {{ project_count }}</p>
+<p>Nombre total de vues : {{ total_views }}</p>
+<p>Moyenne des vues par projet : {{ avg_views_per_project }}</p>
+
+<h2>Projets les plus populaires :</h2>
+{% if projets %}
+  <ul>
+    {% for projet in projets %}
+      <li>{{ projet.libelle }} ({{ projet.num_views }} vues)</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Aucun projet disponible</p>
+{% endif %}
+
+<h2>Projet avec le nombre de vues le plus bas :</h2>
+{% if min_views_projet %}
+  <p>{{ min_views_project.libelle }} ({{ min_views_project.views.count }} vues)</p>
+{% else %}
+  <p>Aucun projet disponible</p>
+{% endif %}
+
+<h2>Projet avec le nombre de vues le plus élevé :</h2>
+{% if max_views_project %}
+  <p>{{ max_views_project.libelle }} ({{ max_views_project.views.count }} vues)</p>
+{% else %}
+  <p>Aucun projet disponible</p>
+{% endif %}
+

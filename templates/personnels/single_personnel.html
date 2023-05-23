@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-header">
+                 <i class="fa fa-align-justify"></i> Teacher Information
+            </div>
+            <div class="card-body">
+                <tbody>
+                    <tr>
+                        <td>Full Name: {{ single_personnel.name }}</td>
+                        <br>
+                        <td>fichier_cv: <a href="{{ single_personnel.fichier_cv.url }}">{{ single_personnel.fichier_cv }}</a></td>
+                        <br>
+                            
+                        <td>Image:   <img src="/media/{{single_personnel.image}}" style="width: 200px; height: 250px;border-radius: 10px  10px 10px 10px;">
+                        </td>
+                        <br>
+                        <td>lien_linkedin: 
+                            <b><a href="{{ single_personnel.lien_linkedin }}">{{ single_personnel.lien_linkedin }}</a></b>
+    
+                        </td>
+                        <br>
+                        
+                    </tr>
+                </tbody>
+            </div>
+        </div>
+    </div>
+   
+   
+</div>
+
+
+
+{% endblock %}
+

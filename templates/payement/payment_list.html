@@ -1,0 +1,9 @@
+<h2>Liste des paiements pour {{ personnel.name }}</h2>
+
+<ul>
+  {% for payment in personnel.paymenthistory_set.all %}
+    <li>{{ payment.payment_date }} - Montant : {{ payment.payment_amount }}</li>
+  {% empty %}
+    <li>Aucun paiement effectué.</li>
+  {% endfor %}
+</ul>

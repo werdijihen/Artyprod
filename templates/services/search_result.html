@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  
+
+  {% if query %}
+    <p>Résultats de recherche pour "{{ query }}" :</p>
+    {% if services %}
+      <ul>
+        {% for service in services %}
+          <li><a href="{% url 'single_service' service.id %}">{{ service.type }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Aucun service trouvé pour "{{ query }}"</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'partials/_alerts.html' %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>  projects List</div>
+            <div class="card-body">
+                <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>description</th>
+                            
+                            <th>date_debut</th>
+                            <th>date_fin</th>
+                            <th>image</th>
+                            {% if user.is_superuser %}
+                            <th>Action</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for projet in projets %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ projet.libelle }}</td>
+                                <td>{{ projet.description }}</td>
+                                <td>{{ projet.date_debut }}</td>
+                                <td>{{ projet.date_fin }}</td>
+                                <td> <div id={{projet.id}} style="width: 250px; margin-bottom: 10px; box-sizing: border-box;">
+                                    <img src="/media/{{projet.image}}" style="width: 390px; height: 270px;border-radius: 10px  10px 10px 10px;">
+                                    <div>
+                                        
+                                    </td>
+                                    
+                                <td>
+                                    <a href="{% url 'single_projet' projet.id %}">
+                                        <button type="button" class="btn btn-primary">Details</button>
+                                    </a>
+                                    {% if not user.is_superuser %}
+                                    <a href="{% url 'demande_projet' %}" class="btn btn-primary">Demander un projet</a>
+                                    {% endif %}
+                                    {% if user.is_superuser %}
+                                    <a href="{% url 'edit_projet' projet.id %}">
+                                        <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>
+                                    </a>
+                                    <a href="{% url 'delete_projet' projet.id %}">
+                                        <button type="button" class="btn btn-danger">X</button>
+                                    </a>
+                                </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {% if projets.has_other_pages %}
+            <ul class="pagination">
+                {% if projets.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{projets.previous_page_number}}" class="page-link">Prev</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Prev</a>
+                    </li>
+                {% endif %}
+                {% for i in projets.paginator.page_range %}
+                    {% if projets.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link">{{ i }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if projets.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{projets.next_page_number}}" class="page-link">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

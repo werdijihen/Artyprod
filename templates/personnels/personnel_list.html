@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Personnels List</div>
+            <div class="card-body">
+                <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>lien_linkedin</th>
+                            
+                            <th>image</th>
+                            <th>fichier_cv</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for personnel in personnels %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ personnel.name }}</td>
+                                <td>
+                                    <b><a href="{{ personnel.lien_linkedin }}">{{ personnel.lien_linkedin }}</a></b> 
+                                <td>
+                                    <div id={{personnel.id}} style="width: 210px; margin-bottom: 10px; box-sizing: border-box; ">
+                    <img src="{{personnel.image.url}}" style="width: 290px; height: 250px;border-radius: 10px  10px 10px 10px;">
+                    <div></td>
+                        <td> <a href="{{ single_personnel.fichier_cv.url }}">{{ personnel.fichier_cv }}</a></td>
+                                
+                                <td>
+                                    <a href="{% url 'single_personnel' personnel.id %}">
+                                        <button type="button" class="btn btn-primary">Details</button>
+                                    </a>
+                                    <a href="{% url 'edit_personnel' personnel.id %}">
+                                        <button type="button" class="btn btn-info"><i class="fa fa-edit"></i></button>
+                                    </a>
+                                    <a href="{% url 'delete_personnel' personnel.id %}">
+                                        <button type="button" class="btn btn-danger">X</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {% if personnels.has_other_pages %}
+            <ul class="pagination">
+                {% if personnels.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{personnels.previous_page_number}}" class="page-link">Prev</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Prev</a>
+                    </li>
+                {% endif %}
+                {% for i in personnels.paginator.page_range %}
+                    {% if personnels.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link">{{ i }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if personnels.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{personnels.next_page_number}}" class="page-link">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+ 

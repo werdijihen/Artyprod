@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  <h1>Demandes de projet</h1>
+  <ul>
+    {% for request in requests %}
+      <li>{{ request.client.user.username }} - {{ request.project.title }} - {{ request.status }}</li>
+      {% if request.status == 'PENDING' %}
+        <a href="{% url 'approve_project_request' request.id %}">Approuver</a>
+        <a href="{% url 'reject_project_request' request.id %}">Rejeter</a>
+      {% endif %}
+    {% empty %}
+      <li>Aucune demande de projet disponible</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

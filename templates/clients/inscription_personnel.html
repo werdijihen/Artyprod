@@ -1,0 +1,6 @@
+<h1>Inscription Personnel</h1>
+<form method="POST" action="{% url 'inscription_personnel' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="S'inscrire">
+</form>
